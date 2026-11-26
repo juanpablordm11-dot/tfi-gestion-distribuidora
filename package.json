@@ -1,0 +1,22 @@
+{
+  "name": "tfi-gestion-distribuidora",
+  "version": "1.0.0",
+  "description": "Sistema de gestión para distribuidora de cigarrillos: stock en dos depósitos, clientes, precios personalizados, ventas, deudas, compras, caja y ganancias.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "start:correo": "node --disable-warning=ExperimentalWarning -e \"process.env.CANAL_RECUPERACION='archivo'; import('./server/index.js')\"",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server/index.js",
+    "test": "node --disable-warning=ExperimentalWarning tests/run.js",
+    "backup": "node --disable-warning=ExperimentalWarning scripts/backup.js",
+    "restore": "node --disable-warning=ExperimentalWarning scripts/restore.js",
+    "demo": "node --disable-warning=ExperimentalWarning scripts/seed-demo.js",
+    "start:demo": "node --disable-warning=ExperimentalWarning scripts/start-demo.js",
+    "datos-ejemplo": "node --disable-warning=ExperimentalWarning scripts/cargar-datos-ejemplo.js",
+    "crear-admin": "node --disable-warning=ExperimentalWarning scripts/crear-admin.js"
+  }
+}

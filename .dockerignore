@@ -1,0 +1,11 @@
+# Nada de datos ni copias dentro de la imagen: la base real vive en el volumen persistente.
+.git
+data/
+backups/
+*.db
+*.db-wal
+*.db-shm
+node_modules/
+_previo/
+tests/
+*.oxps

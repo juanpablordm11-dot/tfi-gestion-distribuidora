@@ -1,0 +1,16 @@
+node_modules/
+data/
+backups/
+*.db
+*.db-wal
+*.db-shm
+
+# Archivos sueltos del usuario que no son parte del sistema
+*.oxps
+
+# No se publica (repositorio público del TFI):
+# - instrucciones personales del asistente, con referencias al proyecto del cliente real
+CLAUDE.md
+# - material de la cátedra y trabajos de otros alumnos (descargados de OneDrive)
+*.zip
+docs/tfi/*Recursos*/

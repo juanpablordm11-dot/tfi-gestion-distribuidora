@@ -1,0 +1,5 @@
+# Saltos de línea siempre LF (el servidor de producción es Linux), aunque se edite en Windows.
+* text=auto eol=lf
+
+# Bases de datos y copias: binarios, nunca convertir.
+*.db binary
