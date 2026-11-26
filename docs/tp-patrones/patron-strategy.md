@@ -20,11 +20,19 @@ Problemas concretos:
 2. **El medio puede variar según el negocio y el momento** (consola en la demo, correo en producción, WhatsApp a futuro), y no había forma de elegirlo sin reescribir código.
 3. **No se podía probar cada medio por separado** de la lógica de recuperación.
 
-## 2. Patrón elegido: Strategy (comportamiento, GoF)
+## 2. Patrón elegido: Strategy (familia "De Comportamiento")
 
-> Strategy define una familia de algoritmos, encapsula cada uno y los hace intercambiables. Permite que el algoritmo varíe independientemente de los clientes que lo usan.
+> **Strategy – Algoritmos intercambiables** (Unidad 4): encapsula algoritmos en clases independientes detrás de una interfaz común. Reemplaza los bloques if/else y permite agregar nuevas reglas sin tocar ni romper el código original (principio Open/Closed).
 
-En el problema hay **una tarea fija** (enviar un código a un usuario) con **varias formas de hacerla** que se tienen que poder **intercambiar sin tocar a quien la usa**. Esa es exactamente la situación que resuelve Strategy.
+**Diagnóstico** según la *Matriz de Diagnóstico del Arquitecto* de la unidad:
+
+| Problema (diagnóstico) | Solución sugerida |
+|---|---|
+| "Tengo varias formas alternativas de [hacer] algo y quiero intercambiarlas…" | **Strategy** |
+
+En el problema hay **una tarea fija** (enviar un código a un usuario) con **varias formas de hacerla** (por consola o por correo) que se tienen que poder **intercambiar sin tocar a quien la usa**. Como en el ejemplo de la unidad de la `CalculadoraCuota`, que "no sabe cómo se calcula, solo recibe el cartucho correcto", acá `auth.js` no sabe cómo se envía el código: recibe el canal elegido y llama a la interfaz común `enviar()`.
+
+**Arquitectura y patrón no son lo mismo** (Unidad 4: "lo macro y lo micro"). El sistema ya tiene una arquitectura en capas (presentación, lógica de negocio, datos). Strategy es una decisión *micro*, dentro de la capa de lógica, para un problema puntual.
 
 ### Cómo se mapea al proyecto
 
@@ -71,22 +79,50 @@ function enviarCodigo(u, codigo) {
 }
 ```
 
-## 3. Por qué Strategy y no otro patrón
+## 3. Por qué Strategy y no otro patrón del catálogo
 
-| Patrón | ¿Resuelve el problema? | Motivo |
+Se compara contra todo el catálogo de la Unidad 4, usando la pregunta de cada familia: **creacionales** (cómo nacen los objetos), **estructurales** (cómo se ensamblan) y **de comportamiento** (cómo se comunican y reparten responsabilidades).
+
+| Patrón (familia) | ¿Resuelve el problema? | Motivo |
 |---|---|---|
-| **Strategy** ✅ | Sí | El problema es **variar un comportamiento** (cómo se envía) e **intercambiarlo** sin tocar al que lo usa. Es su definición. |
-| Factory Method / Simple Factory | No, solo | Resuelve **cómo se crea** un objeto, no cómo variar lo que hace. Lo usamos como complemento (`crearCanal`) para elegir la estrategia por configuración, pero por sí solo deja el problema igual. |
-| Template Method | No | Fija un algoritmo en una clase base y deja variar pasos por **herencia**. Acá no hay pasos comunes que reutilizar entre canales, y obligaría a heredar de una clase base de `auth`, mezclando otra vez seguridad con envío. |
-| Adapter | No | Sirve para **adaptar una interfaz existente** que no encaja (por ejemplo, una librería externa). Hoy no hay ninguna interfaz externa que adaptar. Si mañana se usa la API de WhatsApp, un Adapter podría ir *dentro* de esa estrategia concreta. |
-| Observer | No | Sirve para avisar a **muchos** interesados cuando algo cambia. Acá se elige **un** medio de envío, no se notifica a varios. |
-| Singleton | No | Garantiza una única instancia; no ayuda a intercambiar comportamientos. |
+| **Strategy** (comportamiento) ✅ | **Sí** | El problema es **intercambiar formas alternativas de hacer lo mismo** (enviar el código) sin tocar a quien lo usa. Es exactamente su diagnóstico. |
+| Factory Method (creacional) | No, solo | Resuelve **cómo se crea** un objeto según un dato de entrada, no cómo varía lo que hace. Lo usamos como **complemento**: `crearCanal(nombre)` es el punto único de decisión que crea la estrategia según la configuración. Sin Strategy, la fábrica no tendría una interfaz común que devolver. |
+| Builder (creacional) | No | Sirve para armar un objeto con **muchos parámetros opcionales**. Un canal se crea con un solo dato (la carpeta); no hay "constructor gigante". |
+| Singleton (creacional) | No | Garantiza **una única instancia global**. La unidad advierte que introduce acoplamiento oculto y dificulta las pruebas; además, acá necesitamos poder **cambiar** el canal, no fijar uno solo. |
+| Adapter (estructural) | No (hoy) | Sirve para **conectar código propio con un SDK externo** de interfaz distinta. Hoy no hay ningún servicio externo. Si mañana se usa la API de WhatsApp, un Adapter podría ir *dentro* de esa estrategia concreta. |
+| Facade (estructural) | No | Oculta la **coordinación de varios módulos** detrás de un punto de entrada simple. Acá no se orquestan varios módulos: se elige **una** forma de enviar. |
+| Decorator (estructural) | No | Sirve para **combinar comportamientos opcionales en capas** (descuento + recargo). Acá los canales **no se combinan**: se usa uno u otro. |
+| Observer (comportamiento) | No | Sirve para que **un evento dispare varias reacciones desacopladas**. Acá un pedido produce **un** envío por **un** canal elegido, no avisos a varios interesados. |
+| Command (comportamiento) | No | Convierte una **acción en objeto** para encolarla, registrarla o deshacerla. No se necesita deshacer ni encolar envíos. |
+| State (comportamiento) | No | Cambia el comportamiento de un objeto **según su estado interno** (pendiente → usada → bloqueada). El pedido de recuperación tiene estados, pero se manejan con una sola regla simple en la base; lo que varía según la **configuración** es el medio de envío, y eso es Strategy. |
 
-**Criterio usado** (el mismo de los requisitos técnicos del TFI): *separación de responsabilidades*, *modularidad y reutilización*, y *robustez*. Con Strategy:
-- **Separación de responsabilidades:** `auth.js` decide la seguridad; cada canal decide el envío.
-- **Abierto/cerrado:** para sumar un canal (correo por SMTP, WhatsApp) se agrega una clase con `enviar()` y una línea en `CANALES`. `auth.js` no se modifica.
+**Criterio usado:** el de la Unidad 4 (*primero el problema, después el patrón*; *costo justificado*) y el de los requisitos técnicos del TFI (*separación de responsabilidades, modularidad y reutilización, robustez*).
+
+### Patrones = SOLID en acción
+
+| Principio | Cómo lo cumple el diseño |
+|---|---|
+| **O – Open/Closed** | Para sumar un canal (SMTP, WhatsApp) se agrega una clase con `enviar()` y una línea en `CANALES`; `auth.js` no se modifica. |
+| **S – Single Responsibility** | `auth.js` se ocupa solo de la seguridad (generar, guardar hasheado, vencer, limitar). Cada canal se ocupa solo de enviar. |
+| **D – Dependency Inversion** | `auth.js` depende de la **abstracción** (algo con `enviar()`), no de una clase concreta: se le puede pasar cualquier canal (`usarCanalRecuperacion`). |
+
+Además:
 - **Robustez:** si el canal falla, el sistema lo informa ("No se pudo enviar el código…") en vez de fingir que salió.
-- **Pruebas:** cada canal se prueba solo, y el sistema completo se prueba con el canal cambiado.
+- **Pruebas aisladas:** cada canal se prueba por separado, y el sistema completo se prueba con el canal cambiado.
+
+## 3 bis. Costo arquitectónico y consecuencias (trade-off)
+
+> Unidad 4: **Problema Real Identificado + Costo Arquitectónico Justificado = Patrón Exitoso.**
+
+**Costo de aplicar Strategy:**
+- Un archivo más (`canales-recuperacion.js`) y una **indirección**: para saber cómo se envía el código hay que mirar el canal configurado, no `auth.js`.
+- Una configuración más que conocer (`CANAL_RECUPERACION`).
+
+**Por qué el costo está justificado y no es sobreingeniería (YAGNI):**
+- **El problema es real y existe hoy:** el sistema ya tiene **dos** formas de enviar el código y las dos funcionan (`npm start` por consola; `npm run start:correo` por correo .eml). No se aplicó el patrón "por las dudas".
+- **No se agregaron canales imaginarios.** Correo por SMTP y WhatsApp quedan como trabajo futuro (sección 6) y **no** están programados, justamente para no crear complejidad para un futuro que tal vez no llegue.
+- **El costo es chico:** dos clases cortas y una función que elige, frente a la alternativa de meter `if/else` por canal dentro de la lógica de seguridad.
+- **Se mantuvo lo simple donde alcanza:** los estados del pedido (pendiente, usada, bloqueada) **no** se resolvieron con un patrón, porque una regla simple en la base los resuelve.
 
 ## 4. Implementación (código funcional)
 
