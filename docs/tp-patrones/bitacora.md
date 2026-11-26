@@ -16,10 +16,14 @@
 - `server/auth.js` usa `canal.enviar(...)`; el canal se elige con `CANAL_RECUPERACION` (`consola` por defecto o `archivo`).
 - Comandos: `npm start` (consola) y `npm run start:correo` (correo .eml en `data/bandeja-salida/`).
 - Verificación: `npm test` → 58/58 OK, con 2 pruebas nuevas del patrón (cada estrategia por separado, y el sistema completo funcionando con el canal "archivo").
-- Código subido a GitHub: **[PENDIENTE: enlace al repositorio]**
+- Código subido a GitHub: https://github.com/juanpablordm11-dot/tfi-gestion-distribuidora
+- Prueba manual de los dos canales: `npm start` (el código aparece en la terminal) y `npm run start:correo` (se generó el correo `data/bandeja-salida/recuperacion-jimenez-….eml` y con ese código se cambió la contraseña).
 
 ## 26/11/2026 - Uso de Inteligencia Artificial
 
-> **BORRADOR para revisar y reescribir con sus palabras.** Describe lo que pasó en la sesión con la IA; agreguen o corrijan lo que ustedes verificaron personalmente.
-
-Usamos Claude (asistente de IA) dentro del editor. **Problema:** le pedimos que identificara en nuestro proyecto un problema real que se resolviera con un patrón de diseño y que lo implementara. **Propuesta de la IA:** Strategy aplicado a dos lugares posibles: la exportación de reportes (la que recomendaba) y el envío del código de recuperación de contraseña. **Análisis:** elegimos el envío del código porque lo entendíamos mejor y podíamos explicarlo; descartamos la recomendación de la IA. También descartamos canales "de mentira" (WhatsApp o correo sin servidor real) y pedimos que las estrategias funcionaran de verdad: quedaron la consola y un correo .eml real. **Verificación:** antes de aceptar, corrimos las pruebas automáticas (58/58), probamos a mano los dos canales (el código en la terminal y el correo abierto en el programa de correo) y revisamos que la lógica de seguridad (vencimiento, intentos, hash) no hubiera cambiado. **Corrección:** [PENDIENTE: lo que ustedes corrigieron o pidieron cambiar; si no corrigieron nada del código, decirlo]. **Justificación:** el resultado cumple el criterio del TFI de separación de responsabilidades y permite sumar un canal sin tocar el código de seguridad.
+**Problema:** usamos Claude (asistente de IA en VS Code) y le pedimos que encontrara en nuestro sistema un problema real que se resolviera con un patrón de diseño, y que lo implementara.
+**Propuesta de IA:** sugirió Strategy en dos lugares: la exportación de reportes (su recomendación) o el envío del código de recuperación de contraseña.
+**Análisis:** elegimos el envío del código, en contra de su recomendación, porque lo podíamos explicar mejor; descartamos canales que no funcionaban de verdad (WhatsApp, correo sin servidor) y quedaron la consola y un correo .eml real.
+**Verificación:** antes de aceptar corrimos las pruebas automáticas (58/58), probamos a mano los dos canales (el código en la terminal y el correo generado en la bandeja de salida) y revisamos que no cambiara la seguridad (vencimiento, intentos, hash).
+**Corrección:** al subirlo a GitHub la IA dio por hecho un nombre de usuario que no era el real y un comando que no funcionaba en PowerShell; lo comprobamos en GitHub y en la terminal y lo corregimos.
+**Justificación:** el patrón separa la lógica de seguridad del medio de envío y permite agregar canales sin tocar el código de seguridad.
