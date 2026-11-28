@@ -4,6 +4,30 @@
 
 Las figuras de este manual son capturas reales del sistema, tomadas con los **datos de ejemplo ficticios** que se cargan con `npm run datos-ejemplo`. No contienen información real del cliente.
 
+### Índice de figuras
+
+Figura 1. Pantalla de inicio de sesión.  
+Figura 2. Ventana "Recuperar contraseña" con el código recibido y la contraseña nueva.  
+Figura 3. Código de recuperación mostrado en la consola del sistema (envío simulado).  
+Figura 4. Pantalla de Inicio del administrador: accesos rápidos, resumen del día, avisos y totales del período.  
+Figura 5. Vista del Empleado: entra a Nueva venta y ve el menú reducido.  
+Figura 6. Nueva venta: cliente, depósito, productos y ticket con el total.  
+Figura 7. Nueva venta: forma de pago, entrega para la deuda y confirmación.  
+Figura 8. Comprobante de venta con el estado de cuenta del cliente.  
+Figura 9. Ventas del mes filtradas por cliente, con totales al pie.  
+Figura 10. Detalle de una venta con costo y ganancia (vista del administrador).  
+Figura 11. Clientes: búsqueda por nombre y filtros por modalidad y estado.  
+Figura 12. Ficha del cliente: deuda, saldo a favor, compras, precios especiales y últimas operaciones.  
+Figura 13. Lista de precios del cliente, con un precio especial frente al precio general.  
+Figura 14. Deudas pendientes filtradas por "Vencidas".  
+Figura 15. Registrar cobro eligiendo qué ventas se pagan.  
+Figura 16. Productos con precio de venta, ganancia por caja y stock por depósito.  
+Figura 17. Stock, pestaña Existencias, con las acciones del administrador.  
+Figura 18. Compras filtradas por "Con saldo a pagar".  
+Figura 19. Caja y gastos: saldo total y por medio de pago, y movimientos con filtros.  
+Figura 20. Ganancias del mes y cómo se llega al resultado neto.  
+Figura 21. Configuración → Usuarios: cada usuario con su rol y estado.
+
 ## 1. Introducción
 Este manual explica, pantalla por pantalla, cómo usar el sistema para el trabajo diario de la distribuidora: vender, cobrar, controlar el stock, registrar compras y gastos, y consultar las ganancias.
 
@@ -48,15 +72,21 @@ En esta versión el envío del código está **simulado**: el código aparece en
 *Figura 3. Código de recuperación mostrado en la consola del sistema (envío simulado).*
 
 ## 4. Pantalla principal y menú
+Arriba a la izquierda aparece el **nombre del negocio**, que se configura en **Configuración → Negocio** y también sale en el comprobante. En las figuras se ve "DISTRIBUIDOR CIGARROS", el nombre cargado en los datos de ejemplo.
+
 A la izquierda está el menú, agrupado en **Día a día**, **Mercadería** y **Administración**. Arriba de todo está el botón **Nueva venta**. Abajo aparecen tu nombre, tu rol y **Cerrar sesión**.
 
 El **administrador** entra a la pantalla de **Inicio** (Figura 4): accesos rápidos (Vender, Cobrar, Cargar mercadería, Ver stock), el resumen del día, los avisos de deudas vencidas y de stock bajo, y los totales del período elegido.
 
 El **empleado** entra directamente a **Nueva venta** y ve un menú reducido (Figura 5): Ventas, Clientes, Deudas, Stock y Configuración. Las pantallas con costos, ganancias, compras y caja no le aparecen, y el servidor tampoco se las entrega aunque intente abrirlas.
 
-> 📷 **Figura 4 (pendiente de captura):** pantalla de Inicio del administrador.
+![Figura 4. Pantalla de Inicio del administrador: accesos rápidos, resumen del día, avisos y totales del período.](manual/04-inicio-administrador.png)
 
-> 📷 **Figura 5 (pendiente de captura):** menú reducido del Empleado.
+*Figura 4. Pantalla de Inicio del administrador: accesos rápidos, resumen del día, avisos y totales del período.*
+
+![Figura 5. Vista del Empleado: entra a Nueva venta y ve el menú reducido.](manual/05-menu-empleado.png)
+
+*Figura 5. Vista del Empleado: entra a Nueva venta y ve el menú reducido.*
 
 ## 5. Nueva venta
 1. **¿A quién le vendés?** Buscá el cliente por nombre o documento. Si es nuevo, tocá **+ Nuevo**.
@@ -100,13 +130,19 @@ Tocá una venta para ver el detalle, **cobrar** lo que falta, ver el comprobante
 - **Nuevo cliente:** nombre, documento, teléfono y dirección. El administrador define además si compra de **contado o fiado**, el **límite de crédito** y el **plazo de pago**. Un cliente creado por un empleado queda "de contado".
 - **Ficha del cliente:** cuánto debe, saldo a favor, total comprado, historial de ventas y cobros, y la pestaña **Lista de precios**.
 - **Desactivar o eliminar:** un cliente que nunca tuvo ventas ni pagos se puede **Eliminar**; si tiene historial, se **Desactiva** y su historial se conserva *(administrador)*.
-- **Precios especiales:** precio propio por caja y por unidad para ese cliente. Solo el administrador los cambia.
+- **Precios especiales:** en la pestaña **Lista de precios** se escribe el precio propio de ese cliente por caja y por unidad, y se guarda solo al salir del casillero. Si se deja vacío, se usa el precio general. Cambiar la lista no modifica ventas anteriores. Solo el administrador los cambia (Figura 13).
 
 ![Figura 11. Clientes: búsqueda por nombre y filtros por modalidad y estado.](manual/11-clientes-buscador.png)
 
 *Figura 11. Clientes: búsqueda por nombre y filtros por modalidad y estado.*
 
-> 📷 **Figura 12 (pendiente de captura):** ficha de un cliente con su deuda y sus precios especiales.
+![Figura 12. Ficha del cliente: deuda, saldo a favor, compras, precios especiales y últimas operaciones.](manual/12-ficha-cliente.png)
+
+*Figura 12. Ficha del cliente: deuda, saldo a favor, compras, precios especiales y últimas operaciones.*
+
+![Figura 13. Lista de precios del cliente, con un precio especial frente al precio general.](manual/13-lista-de-precios-cliente.png)
+
+*Figura 13. Lista de precios del cliente, con un precio especial frente al precio general.*
 
 ## 8. Deudas y cobros
 Tres pestañas:
@@ -116,50 +152,52 @@ Tres pestañas:
 
 **Registrar un cobro:** tocá **Cobrar** en la fila (o **Registrar cobro** arriba), escribí el importe y el medio. El cobro se aplica a **las deudas más viejas primero**, o podés **elegir cuáles paga** venta por venta. El cobro baja la deuda y entra a la caja. Si paga de más, queda como saldo a favor.
 
-![Figura 13. Deudas pendientes filtradas por "Vencidas".](manual/13-deudas-vencidas.png)
+![Figura 14. Deudas pendientes filtradas por "Vencidas".](manual/14-deudas-vencidas.png)
 
-*Figura 13. Deudas pendientes filtradas por "Vencidas".*
+*Figura 14. Deudas pendientes filtradas por "Vencidas".*
 
-![Figura 14. Registrar cobro eligiendo qué ventas se pagan.](manual/14-registrar-cobro.png)
+![Figura 15. Registrar cobro eligiendo qué ventas se pagan.](manual/15-registrar-cobro.png)
 
-*Figura 14. Registrar cobro eligiendo qué ventas se pagan.*
+*Figura 15. Registrar cobro eligiendo qué ventas se pagan.*
 
 ## 9. Productos *(administrador)*
 Alta y edición de productos: nombre, marca, variante, código, **unidades por caja**, costo, precio por caja y por unidad, y **stock mínimo**. Un producto con historial no se borra: se desactiva. Tiene buscador, filtros y **Exportar**.
 
-![Figura 15. Productos con precio de venta, ganancia por caja y stock por depósito.](manual/15-productos.png)
+![Figura 16. Productos con precio de venta, ganancia por caja y stock por depósito.](manual/16-productos.png)
 
-*Figura 15. Productos con precio de venta, ganancia por caja y stock por depósito.*
+*Figura 16. Productos con precio de venta, ganancia por caja y stock por depósito.*
 
 ## 10. Stock
 Muestra cuánto hay en el **Galpón** y en la **Casa**, con avisos de **stock bajo** y **agotado**. Pestañas: Existencias, Por lugar, Por fecha de ingreso, Ingresos por mes e Historial de movimientos.
 
 El administrador además puede **Transferir** entre depósitos, cargar una **Entrada manual**, **Contar** (ajuste de inventario) y registrar una **Pérdida**, siempre con motivo. El empleado solo consulta.
 
-![Figura 16. Stock, pestaña Existencias, con las acciones del administrador.](manual/16-stock-existencias.png)
+![Figura 17. Stock, pestaña Existencias, con las acciones del administrador.](manual/17-stock-existencias.png)
 
-*Figura 16. Stock, pestaña Existencias, con las acciones del administrador.*
+*Figura 17. Stock, pestaña Existencias, con las acciones del administrador.*
 
 ## 11. Compras y proveedores *(administrador)*
 **Nueva compra:** proveedor, depósito y productos con cantidad y costo. La compra suma el stock y actualiza el costo. Si no se paga toda, queda como deuda con el proveedor.
 
 La lista se filtra con buscador, proveedor, estado (con saldo, pagada, anulada) y período, y tiene **Exportar**. En la pestaña **Proveedores** se buscan y se ve a quiénes se les debe.
 
-![Figura 17. Compras filtradas por "Con saldo a pagar".](manual/17-compras-filtradas.png)
+![Figura 18. Compras filtradas por "Con saldo a pagar".](manual/18-compras-filtradas.png)
 
-*Figura 17. Compras filtradas por "Con saldo a pagar".*
+*Figura 18. Compras filtradas por "Con saldo a pagar".*
 
 ## 12. Caja y gastos *(administrador)*
 Arriba muestra cuánto dinero debería haber en total y separado por medio (efectivo, transferencias y otros). Abajo, todo lo que entra y sale de la caja, con filtros por fechas, categoría y medio: ventas cobradas, cobros de deudas, pagos a proveedores, gastos y retiros. Las anulaciones no borran el movimiento original: generan uno opuesto marcado como "Corrección de un movimiento anterior". Con **Nuevo gasto** se cargan fletes, alquiler, servicios, sueldos, etc. (se descuentan de la ganancia), y con **Retiro personal** y los demás botones, los movimientos manuales de caja.
 
-> 📷 **Figura 18 (pendiente de captura):** pantalla Caja y gastos.
+![Figura 19. Caja y gastos: saldo total y por medio de pago, y movimientos con filtros.](manual/19-caja-y-gastos.png)
+
+*Figura 19. Caja y gastos: saldo total y por medio de pago, y movimientos con filtros.*
 
 ## 13. Ganancias *(administrador)*
 Ganancia por período (Hoy, Semana, Mes, Mes pasado, Año o Fechas…), por producto y por cliente, calculada con el costo de cada venta. Compara cada total con el período anterior y explica, paso a paso, **cómo se llega al resultado**: ventas, menos costo de lo vendido, menos gastos y pérdidas de stock.
 
-![Figura 19. Ganancias del mes y cómo se llega al resultado neto.](manual/19-ganancias.png)
+![Figura 20. Ganancias del mes y cómo se llega al resultado neto.](manual/20-ganancias.png)
 
-*Figura 19. Ganancias del mes y cómo se llega al resultado neto.*
+*Figura 20. Ganancias del mes y cómo se llega al resultado neto.*
 
 ## 14. Configuración
 - **Mi cuenta:** ver tu usuario y **Cambiar mi contraseña** (todos los usuarios).
@@ -167,7 +205,9 @@ Ganancia por período (Hoy, Semana, Mes, Mes pasado, Año o Fechas…), por prod
 - **Usuarios:** **Nuevo usuario**, editar, cambiar el rol (Empleado o Administrador) o desactivar *(administrador)*. Siempre tiene que quedar al menos un administrador activo.
 - **Copias de seguridad** y **Registro de actividad** *(administrador)*.
 
-> 📷 **Figura 20 (pendiente de captura):** Configuración → Usuarios.
+![Figura 21. Configuración → Usuarios: cada usuario con su rol y estado.](manual/21-usuarios.png)
+
+*Figura 21. Configuración → Usuarios: cada usuario con su rol y estado.*
 
 ## 15. Cerrar sesión
 Tocá **Cerrar sesión** abajo a la izquierda. Si te olvidás, la sesión vence sola a los 14 días.
