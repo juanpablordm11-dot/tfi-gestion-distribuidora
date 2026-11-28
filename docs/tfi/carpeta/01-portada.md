@@ -10,7 +10,7 @@
 | | |
 |---|---|
 | **Institución / empresa vinculante** | Gestión de Negocio de Cigarrillos |
-| **Integrantes** | Juan Pablo Romagnoli – Legajo [COMPLETAR] · Guillermo Jiménez – Legajo [COMPLETAR] |
+| **Integrantes** | Juan Pablo Romagnoli – Legajo 62386 · Guillermo Jiménez – Legajo 62524 |
 | **Carrera** | Tecnicatura Universitaria en Programación (TUP) – Plan 2024 |
 | **Materia** | Metodología de Sistemas II |
 | **Tutora académica / Docente** | Ing. Rosana Soledad Marchese |

@@ -12,7 +12,7 @@
 | | |
 |---|---|
 | **Institución / empresa vinculante** | Gestión de Negocio de Cigarrillos |
-| **Integrantes** | Juan Pablo Romagnoli – Legajo [COMPLETAR] · Guillermo Jiménez – Legajo [COMPLETAR] |
+| **Integrantes** | Juan Pablo Romagnoli – Legajo 62386 · Guillermo Jiménez – Legajo 62524 |
 | **Carrera** | Tecnicatura Universitaria en Programación (TUP) – Plan 2024 |
 | **Materia** | Metodología de Sistemas II |
 | **Tutora académica / Docente** | Ing. Rosana Soledad Marchese |
@@ -585,7 +585,7 @@ El desarrollo se organizó con un enfoque iterativo e incremental, en tres sprin
 - **Sprint 3:** ampliación y formalización como Trabajo Final Integrador: requisitos que exige la cátedra, mejora propuesta, documentación y manual.
 
 Sistema: **Gestión para Distribuidoras/Negocios**. Cliente: **Gestión de Negocio de Cigarrillos**.
-Integrantes: **Juan Pablo Romagnoli** (legajo [COMPLETAR]) y **Guillermo Jiménez** (legajo [COMPLETAR]).
+Integrantes: **Juan Pablo Romagnoli** (legajo 62386) y **Guillermo Jiménez** (legajo 62524).
 
 ### PRIMER SPRINT: 15/09/2026 al 18/10/2026
 **Objetivo general:** relevar el negocio, diseñar la base de datos y construir la base técnica del sistema: servidor, seguridad, catálogos y stock.
