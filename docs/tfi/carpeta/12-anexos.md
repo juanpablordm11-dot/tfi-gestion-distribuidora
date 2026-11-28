@@ -25,7 +25,6 @@ Necesidades relevadas con el dueño del negocio durante el sprint 1, y cómo las
 7. ¿Quién más usa la información? ¿Qué debería poder ver y hacer cada persona?
 8. ¿Desde qué dispositivos lo usaría? ¿Necesita imprimir o enviar comprobantes?
 
-*(Las fechas y participantes de cada entrevista con el cliente se pueden agregar acá si el equipo conserva las notas.)*
 
 ## Anexo B – Diccionario de datos (requisitos de datos)
 
@@ -515,3 +514,4 @@ Las restricciones (CHECK, triggers que impiden borrar registros financieros) est
 | 1.0 | 25/11/2026 | Descripción del proyecto y plan de trabajo | Romagnoli, Jiménez |
 | 1.1 | 26/11/2026 | Recuperación de contraseña, rol Empleado, filtros, patrón Strategy | Romagnoli, Jiménez |
 | 1.2 | 27/11/2026 | Carpeta completa (12 secciones), anexos y manual de usuario | Romagnoli, Jiménez |
+| 1.3 | 27/11/2026 | Revisión final: DER e Ishikawa como figuras, capturas del manual, coherencia de roles y formato de entrega | Romagnoli, Jiménez |

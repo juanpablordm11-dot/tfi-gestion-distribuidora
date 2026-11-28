@@ -17,4 +17,3 @@
 
 Documento anexo aparte: **Manual de usuario**.
 
-*(En Google Docs, reemplazar esta lista por un índice automático con números de página: Insertar → Índice.)*

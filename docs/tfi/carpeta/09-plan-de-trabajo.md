@@ -52,8 +52,8 @@ Integrantes: **Juan Pablo Romagnoli** (legajo 62386) y **Guillermo Jiménez** (l
 |---|---|---|---|
 | Análisis | Documentación de análisis | ERS: requisitos, reglas de negocio, historias de usuario, trazabilidad, DER y análisis de normalización | 5 horas |
 | Backend / Frontend | Recuperación de contraseña | Código de 6 números de un solo uso (vence a los 15 minutos, se bloquea tras 5 errores) con envío simulado, tabla nueva `recuperaciones_clave` (migración 007) y prueba automática. **Hecho el 25/11/2026** | 4 horas |
-| Backend / Frontend | Mejora propuesta | Exportación a PDF de los reportes de ganancias, deudas y caja | 5 horas |
-| Backend / Frontend | Correcciones del tutor y la docente | Cambios pedidos en los seguimientos. **25/11/2026:** filtros y buscadores en todos los listados (compras, proveedores, deudas, historial de cobros, ventas), botón "Limpiar filtros" y contador de resultados, a pedido de la profesora (sistema más intuitivo). **26/11/2026:** guía de diseño del proyecto (skill `diseno-sistema`) a partir de referencias de paneles de gestión, ajuste visual sobrio (colores grafito, rojo más sobrio, sin brillos) y exportación de compras y deudas. **26/11/2026:** rol "Empleado" (vende, cobra y consulta; sin costos ni ganancias), con permisos controlados en el servidor y prueba automática | 3 horas |
+| Backend / Frontend | Mejora propuesta (planificada) | Exportación a PDF de los reportes de ganancias, deudas y caja | 5 horas |
+| Backend / Frontend | Correcciones del tutor y la docente | Cambios pedidos en los seguimientos. **25/11/2026:** filtros y buscadores en todos los listados (compras, proveedores, deudas, historial de cobros, ventas), botón "Limpiar filtros" y contador de resultados, a pedido de la profesora (sistema más intuitivo). **26/11/2026:** guía de diseño de la interfaz a partir de referencias de paneles de gestión, ajuste visual sobrio (colores grafito, rojo más sobrio, sin brillos) y exportación de compras y deudas. **26/11/2026:** rol "Empleado" (vende, cobra y consulta; sin costos ni ganancias), con permisos controlados en el servidor y prueba automática | 3 horas |
 | Pruebas | Pruebas finales | Pruebas automáticas y manuales de los flujos nuevos | 2 horas |
 | Documentación | Manual de usuario | Manual pantalla por pantalla con capturas reales | 4 horas |
 | Documentación | Carpeta final | Redacción y revisión de la carpeta del proyecto | 2 horas |
@@ -64,7 +64,6 @@ Integrantes: **Juan Pablo Romagnoli** (legajo 62386) y **Guillermo Jiménez** (l
 
 ## 9.2 Calendarización de actividades
 
-Las fechas de los sprints 1 y 2 son estimadas y hay que revisarlas.
 
 | Actividad | Fecha de inicio | Fecha de fin | Duración | Responsable |
 |---|---|---|---|---|
@@ -131,4 +130,4 @@ Son tentativas y se confirman con el tutor. La cátedra exige al menos 2 semanas
 | Mesa de Entrada | 15 a 20 días antes de la defensa |
 | Defensa del TFI | febrero de 2027 (fecha a confirmar) |
 
-**Nota:** los criterios de la cátedra dicen que la carpeta enviada por correo "se evalúa en un plazo de 30 días aproximadamente", pero también que el envío se hace "entre 15 y 20 días antes de la defensa". Conviene preguntarle al tutor en el seguimiento 1 cuál de los dos plazos rige. Además, hay que confirmar si hay seguimientos durante el receso de enero.
+**Nota:** los criterios de la cátedra indican que la carpeta enviada por correo se evalúa en un plazo aproximado de 30 días, y también que el envío se realiza entre 15 y 20 días antes de la defensa. El plazo que rige, y si hay seguimientos durante el receso de enero, se acordará con el tutor en el primer seguimiento.

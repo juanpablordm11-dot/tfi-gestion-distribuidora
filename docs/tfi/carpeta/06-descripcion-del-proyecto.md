@@ -47,14 +47,14 @@ Módulos principales:
 ## 6.3 Alcance del proyecto
 
 **Incluye:**
-- Login, roles Administrador / Usuario, ABM de usuarios y recuperación de contraseña (envío simulado).
+- Login, roles Administrador / Empleado, ABM de usuarios y recuperación de contraseña (envío simulado).
 - ABM y consulta de productos, clientes y proveedores (la baja es desactivación si tienen historial).
 - Stock por depósito: entradas, transferencias, mermas, ajustes con motivo, lotes por fecha de ingreso y alertas de stock mínimo.
 - Ventas con precio por cliente, descuentos, control de stock disponible, límite de crédito y anulación con motivo.
 - Deudas calculadas (total − pagos aplicados), cobros parciales, saldo a favor y saldo inicial de clientes y proveedores.
 - Compras a proveedores con costo promedio ponderado, pagos parciales y anulación.
 - Caja (ingresos y egresos por categoría y medio) y gastos.
-- Reportes: panel principal, ganancias por período, producto y cliente, deudas, stock bajo; exportación CSV de productos, clientes y ventas; comprobante de venta en PDF.
+- Reportes: panel principal, ganancias por período, producto y cliente, deudas, stock bajo; exportación CSV de productos, clientes, ventas, compras y deudas; comprobante de venta en PDF.
 - Auditoría de acciones y copias de seguridad.
 
 **No incluye (límites):**
@@ -85,29 +85,29 @@ El control de permisos está en el servidor (`server/routes.js`): cada ruta indi
 **HU3 – Gestionar usuarios (Media).** Como administrador, quiero dar de alta, modificar y desactivar usuarios con su rol, para controlar quién accede.
 - No se puede dejar el sistema sin un administrador activo.
 
-**HU4 – Registrar producto (Alta).** Como usuario, quiero cargar un producto con unidades por caja, costo, precios y stock mínimo, para venderlo por caja o por unidad.
+**HU4 – Registrar producto (Alta).** Como administrador, quiero cargar un producto con unidades por caja, costo, precios y stock mínimo, para venderlo por caja o por unidad.
 - El código no se puede repetir. Un producto con historial no se borra, solo se desactiva.
 
-**HU5 – Precios por cliente (Alta).** Como usuario, quiero definir el precio de un producto para un cliente en particular, para cobrarle siempre lo acordado.
+**HU5 – Precios por cliente (Alta).** Como administrador, quiero definir el precio de un producto para un cliente en particular, para cobrarle siempre lo acordado.
 - Si el cliente no tiene precio propio se usa el general. Cambiar un precio no modifica las ventas anteriores.
 
-**HU6 – Registrar venta (Alta).** Como usuario, quiero registrar una venta eligiendo el cliente y el depósito, para descontar el stock y registrar el cobro o la deuda.
+**HU6 – Registrar venta (Alta).** Como vendedor (administrador o empleado), quiero registrar una venta eligiendo el cliente y el depósito, para descontar el stock y registrar el cobro o la deuda.
 - No permite vender más de lo disponible en el depósito.
 - Puede ser al contado, fiada o mixta; la fiada respeta la modalidad y el límite de crédito del cliente.
 - Genera un comprobante (también en PDF). Un doble clic no registra la venta dos veces.
 
-**HU7 – Cobrar deuda (Alta).** Como usuario, quiero registrar un pago parcial de un cliente, para que su deuda baje y quede el historial.
+**HU7 – Cobrar deuda (Alta).** Como vendedor (administrador o empleado), quiero registrar un pago parcial de un cliente, para que su deuda baje y quede el historial.
 - El pago se aplica a las ventas más viejas o a las que se elijan. Lo que sobra queda como saldo a favor.
 
-**HU8 – Registrar compra (Alta).** Como usuario, quiero registrar una compra a un proveedor, para sumar stock y actualizar el costo.
+**HU8 – Registrar compra (Alta).** Como administrador, quiero registrar una compra a un proveedor, para sumar stock y actualizar el costo.
 - Recalcula el costo promedio ponderado; permite dejar saldo pendiente con el proveedor.
 
-**HU9 – Mover stock (Media).** Como usuario, quiero transferir mercadería entre depósitos y registrar mermas o ajustes con motivo, para que el stock coincida con la realidad.
+**HU9 – Mover stock (Media).** Como administrador, quiero transferir mercadería entre depósitos y registrar mermas o ajustes con motivo, para que el stock coincida con la realidad.
 
 **HU10 – Anular operación (Alta).** Como administrador, quiero anular una venta, pago o compra indicando el motivo, para corregir errores sin perder el historial.
 - Revierte stock, deuda y caja, y queda en la auditoría.
 
-**HU11 – Consultar reportes y exportar (Alta).** Como usuario, quiero ver ganancias, deudas y stock bajo por período y exportar listados, para tomar decisiones.
+**HU11 – Consultar reportes y exportar (Alta).** Como administrador, quiero ver ganancias, deudas y stock bajo por período y exportar listados, para tomar decisiones.
 - Exporta a CSV; el comprobante de venta se descarga en PDF.
 
 ## 6.6 Reglas de negocio
@@ -131,8 +131,8 @@ El control de permisos está en el servidor (`server/routes.js`): cada ruta indi
 **Anulaciones y seguridad**
 - RN11. Nada se borra: ventas, compras, pagos y gastos se anulan con motivo; la anulación revierte stock, deuda y caja.
 - RN12. Solo el Administrador puede anular, gestionar usuarios y ver la auditoría.
-- RN12b. El Empleado solo vende, cobra y consulta: no ve costos ni ganancias, y el crédito de un cliente (modalidad, límite y plazo) lo define solo el Administrador; un cliente creado por un empleado queda "de contado".
-- RN13. Siempre tiene que haber al menos un Administrador activo.
+- RN13. El Empleado solo vende, cobra y consulta: no ve costos ni ganancias, y el crédito de un cliente (modalidad, límite y plazo) lo define solo el Administrador; un cliente creado por un empleado queda "de contado".
+- RN14. Siempre tiene que haber al menos un Administrador activo.
 
 ## 6.7 Requisitos
 
@@ -142,7 +142,7 @@ El control de permisos está en el servidor (`server/routes.js`): cada ruta indi
 |---|---|---|
 | RF01 | Iniciar y cerrar sesión con usuario y contraseña | Alta |
 | RF02 | Recuperar la contraseña con un código de un solo uso | Alta |
-| RF03 | ABM de usuarios con roles Administrador / Usuario | Alta |
+| RF03 | ABM de usuarios con roles Administrador / Empleado | Alta |
 | RF04 | ABM y consulta de productos | Alta |
 | RF05 | ABM y consulta de clientes, con precios propios | Alta |
 | RF06 | ABM y consulta de proveedores | Media |
@@ -175,10 +175,10 @@ El control de permisos está en el servidor (`server/routes.js`): cada ruta indi
 |---|---|---|
 | HU1 Iniciar sesión | RN12 | RF01 |
 | HU2 Recuperar contraseña | — | RF02 |
-| HU3 Gestionar usuarios | RN12, RN13 | RF03 |
+| HU3 Gestionar usuarios | RN12, RN13, RN14 | RF03 |
 | HU4 Registrar producto | RN1, RN11 | RF04 |
 | HU5 Precios por cliente | RN5 | RF05 |
-| HU6 Registrar venta | RN1, RN5, RN6, RN7 | RF08 |
+| HU6 Registrar venta | RN1, RN5, RN6, RN7, RN13 | RF08 |
 | HU7 Cobrar deuda | RN8, RN9, RN10 | RF09 |
 | HU8 Registrar compra | RN2 | RF06, RF10 |
 | HU9 Mover stock | RN1, RN2, RN3, RN4 | RF07 |
@@ -204,7 +204,7 @@ El control de permisos está en el servidor (`server/routes.js`): cada ruta indi
 
 El modelo tiene 23 tablas (más el registro de migraciones). Las claves foráneas están activas (`PRAGMA foreign_keys = ON`), hay restricciones `CHECK` (por ejemplo, stock ≥ 0) y triggers que impiden borrar registros financieros.
 
-> Para la carpeta impresa: pegar este código en https://mermaid.live y exportar la imagen.
+El diagrama se presenta en dos partes para que sea legible: la operación comercial (ventas, cobros y compras) y el stock con la seguridad y la caja. Productos y depósitos aparecen en ambas porque son el punto de unión.
 
 ```mermaid
 erDiagram
@@ -238,7 +238,7 @@ erDiagram
   USUARIOS ||--o{ GASTOS : registra
 ```
 
-**Modelo relacional (tablas principales; PK subrayada en la carpeta, FK con →):**
+**Modelo relacional (PK en negrita; FK indicada con →):**
 - usuarios (**id**, usuario, nombre, rol, pass_hash, activo, creado)
 - recuperaciones_clave (**id**, usuario_id → usuarios, codigo_hash, creada, expira, intentos, estado, cerrada)
 - depositos (**id**, nombre)

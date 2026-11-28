@@ -17,4 +17,3 @@
 | **Repositorio del proyecto** | https://github.com/juanpablordm11-dot/tfi-gestion-distribuidora |
 | **Fecha de presentación** | 27/11/2026 |
 
-*(Logotipo UTN-FRT)*

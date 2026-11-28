@@ -17,7 +17,6 @@
 | Juan Pablo Romagnoli | Analista funcional · Desarrollador backend y frontend · Diseñador de base de datos · Documentación |
 | Guillermo Jiménez | Analista funcional · Desarrollador backend y frontend · Pruebas · Documentación |
 
-*(Ajustar según la distribución real de tareas del equipo.)*
 
 ## 8.3 Recursos materiales
 - Computadoras personales con Windows 10/11.
