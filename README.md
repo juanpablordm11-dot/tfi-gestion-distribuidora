@@ -1,6 +1,20 @@
-# Gestión de distribuidora
+# Gestión para Distribuidoras/Negocios
 
-Sistema web privado para una distribuidora de cigarrillos: stock en dos depósitos (Galpón y Casa), clientes de contado y fiado con precios propios por caja y por unidad, ventas, deudas con cobros parciales, compras a proveedores, caja, gastos y ganancias.
+**Trabajo Final Integrador – Tecnicatura Universitaria en Programación – UTN FRT**
+Juan Pablo Romagnoli · Guillermo Jiménez · Metodología de Sistemas II – 2026
+
+| Documentación | Archivo |
+|---|---|
+| Carpeta del proyecto (12 secciones) | [docs/tfi/CARPETA-TFI.md](docs/tfi/CARPETA-TFI.md) |
+| Manual de usuario | [docs/tfi/MANUAL-USUARIO.md](docs/tfi/MANUAL-USUARIO.md) |
+| TP 2 – Patrón Strategy (justificación y bitácora) | [docs/tp-patrones/](docs/tp-patrones/) |
+| Decisiones técnicas | [docs/DECISIONES.md](docs/DECISIONES.md) |
+
+Arquitectura cliente–servidor en capas (presentación `public/`, lógica `server/`, datos SQLite `migrations/`). Pruebas automáticas: `npm test` (58/58).
+
+---
+
+Sistema web para una distribuidora de cigarrillos: stock en dos depósitos (Galpón y Casa), clientes de contado y fiado con precios propios por caja y por unidad, ventas, deudas con cobros parciales, compras a proveedores, caja, gastos y ganancias.
 
 **No tiene dependencias**: no hace falta `npm install`. Solo necesita Node.js 22.13 o más nuevo.
 

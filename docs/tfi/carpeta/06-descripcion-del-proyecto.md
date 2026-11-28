@@ -1,6 +1,6 @@
 # 6. DESCRIPCIÓN DEL PROYECTO
 
-> Borrador para la carpeta del TFI. Todo lo descrito existe en el código salvo la mejora propuesta (6.11), que está planificada.
+> Todo lo descrito en esta sección está implementado en el sistema, salvo la mejora propuesta (6.11), que está planificada y presupuestada.
 
 **Sistema:** Gestión para Distribuidoras/Negocios
 **Cliente:** Gestión de Negocio de Cigarrillos
@@ -185,10 +185,20 @@ El control de permisos está en el servidor (`server/routes.js`): cada ruta indi
 | HU10 Anular operación | RN11, RN12 | RF12, RF15 |
 | HU11 Reportes y exportación | RN6, RN8 | RF11, RF13 |
 
-## 6.9 Restricciones y limitaciones
-- Una sola instancia de servidor (SQLite); para muchos usuarios simultáneos o varias sucursales habría que migrar a PostgreSQL.
-- No emite facturas fiscales.
-- Necesita conexión a la red (local o internet) para funcionar.
+## 6.9 Restricciones, limitaciones y suposiciones
+
+**Restricciones y limitaciones**
+- Una sola instancia de servidor (SQLite). Para muchos usuarios simultáneos o varias sucursales habría que migrar a PostgreSQL; el SQL está concentrado en la capa de servicios para facilitarlo.
+- No emite facturas fiscales (ARCA/AFIP): el comprobante aclara que no es factura.
+- Necesita conexión a la red (local o internet) para funcionar; no tiene modo sin conexión.
+- La caja refleja lo registrado en el sistema; no se concilia automáticamente con el banco.
+- El envío del código de recuperación de contraseña es simulado (consola o correo .eml), porque los usuarios no tienen e-mail cargado.
+
+**Suposiciones**
+- El sistema se usa en la computadora del negocio y, opcionalmente, desde celulares de la misma red.
+- El administrador carga los datos iniciales: productos, clientes, proveedores y las deudas anteriores al sistema (saldo inicial).
+- Los usuarios reciben una explicación inicial; cada pantalla tiene además su ayuda "Cómo se usa".
+- Se hacen copias de seguridad periódicas, que el sistema facilita.
 
 ## 6.10 Diagrama Entidad–Relación y modelo relacional
 
@@ -261,22 +271,58 @@ erDiagram
   - *Saldos de stock:* `existencias.cantidad`, `lotes.cantidad` y `productos.valor_inventario` se actualizan en la misma transacción que cada movimiento; una prueba automática verifica que siempre coincidan con la suma de los movimientos.
   - *Lo que sí se calcula:* la **deuda** (total − pagos aplicados) no se guarda, para que nunca quede desincronizada.
 
+**Checklist de normalización de la cátedra** (material "Normalización de Tablas"):
+
+| Pregunta | Respuesta en el modelo |
+|---|---|
+| ¿Cada campo tiene un único valor? (1FN) | Sí. No hay listas en un campo: los productos de una venta o compra están en tablas de detalle. |
+| ¿Hay campos no clave que dependan solo de parte de la PK? (2FN) | No. En `existencias` y `precios_cliente` (claves compuestas) los atributos dependen de la clave completa. |
+| ¿Hay campos que dependen de otros campos no clave? (3FN) | No. Nombre, dirección o precio general del cliente y del producto no se copian en otras tablas; se referencian por su clave. |
+| ¿Hay redundancia evidente? | No. Los únicos valores repetidos son fotos históricas justificadas (precio y costo al momento de la venta). |
+| ¿Se podría perder información si elimino una fila? | No. Los registros financieros y de stock no se borran (lo impiden triggers): se anulan con motivo. |
+| ¿Hay datos calculables guardados innecesariamente? | La deuda no se guarda. Los saldos de stock sí, por rendimiento, y una prueba automática verifica que coincidan con los movimientos. |
+| ¿Cada tabla representa una sola entidad conceptual? | Sí (ver el diccionario de datos en el Anexo B). |
+
 ## 6.11 Propuesta de mejora y presupuesto
 
 **Mejora propuesta: exportación a PDF de los reportes de ganancias, deudas y caja.** Hoy esos reportes se ven en pantalla y algunos listados salen en CSV, pero el dueño necesita imprimirlos o enviarlos. Reutiliza el generador de PDF que ya existe en el sistema.
 
 | Concepto | Horas | Valor hora | Subtotal |
 |---|---|---|---|
-| Sistema original (sprints 1 y 2) | 70 hs | [PENDIENTE] | 70 × valor hora |
-| Adecuación TFI: recuperación de contraseña, documentación, manual (sprint 3) | 20 hs | [PENDIENTE] | 20 × valor hora |
-| Ampliación: mejora propuesta | 5 hs | [PENDIENTE] | 5 × valor hora |
-| **Total** | **95 hs** | | **95 × valor hora** |
+| **Costo del sistema original** (sprints 1 y 2) | 70 hs | $ 6.000 | **$ 420.000** |
+| Adecuación al TFI: recuperación de contraseña, roles, filtros, patrón Strategy, documentación y manual (sprint 3) | 20 hs | $ 6.000 | $ 120.000 |
+| **Costo de la ampliación** (mejora: reportes en PDF) | 5 hs | $ 6.000 | **$ 30.000** |
+| **Presupuesto total del sistema con la mejora** | **95 hs** | | **$ 570.000** |
 
-El **valor hora** se define con una referencia que se pueda citar (por ejemplo, tarifas sugeridas por consejos profesionales de informática o relevamientos salariales del sector). **[PENDIENTE]**
+**Valor hora:** $ 6.000, tomado como el límite entre programador *junior* ($ 3.000–6.000) y *semi-senior* ($ 6.000–12.000) según la referencia de mercado de Hacé Cuentas (2026) para Argentina. Se eligió ese valor porque el equipo está formado por estudiantes avanzados que desarrollaron un sistema completo. No existe un arancel oficial de referencia para programadores; el valor se puede ajustar sin cambiar las horas.
+
+**Detalle de la ampliación (5 hs):** botón "Exportar PDF" en Ganancias, Deudas y Caja (2 hs), armado del documento con el generador de PDF que ya tiene el sistema (2 hs) y pruebas automáticas (1 h).
 
 ## 6.12 Mejoras a futuro
-- Envío real del código de recuperación por correo o WhatsApp.
+- Envío real del código de recuperación por correo (SMTP) o WhatsApp: se agrega como un canal nuevo del patrón Strategy, sin tocar la lógica de seguridad.
+- Cobro de deudas con Mercado Pago (link o QR de pago), siguiendo el instructivo de integración (Checkout Pro y webhook) que brinda la cátedra; la conexión con el SDK externo se aislaría con el patrón Adapter.
+- Que la venta proponga automáticamente la fecha de ingreso más antigua (lo primero que entra, primero sale), para agilizar la carga.
 - Avisos automáticos de deuda vencida.
 - Importación de productos desde Excel.
 - Pedido de reposición automático según stock mínimo.
 - Facturación electrónica (ARCA/AFIP).
+
+## 6.13 Atributos de calidad del sistema
+
+| Atributo | Cómo se cumple |
+|---|---|
+| Seguridad | Contraseñas con hash (scrypt), bloqueo tras 5 intentos, sesión con cookie HttpOnly, protección CSRF, permisos por rol controlados en el servidor |
+| Fiabilidad | Operaciones atómicas (todo o nada), restricciones en la base, copias de seguridad y 58 pruebas automáticas |
+| Exactitud | Dinero en centavos enteros y stock en unidades enteras; prueba de integridad contable global |
+| Usabilidad | Ayuda "Cómo se usa" en cada pantalla, filtros, buscadores y mensajes claros en español |
+| Mantenibilidad | Arquitectura en capas, código modular con componentes reutilizables, migraciones de base de datos y decisiones documentadas |
+| Portabilidad | Funciona en cualquier sistema con Node.js 22.13 o superior y un navegador; se usa desde PC y celular |
+| Trazabilidad | Nada se borra: anulaciones con motivo y registro de auditoría con usuario y fecha |
+
+## 6.14 Criterios de aceptación del sistema
+- Una venta descuenta el stock del depósito elegido y nunca deja stock negativo.
+- La deuda de un cliente es igual a sus ventas menos los pagos aplicados, también después de anular operaciones.
+- El saldo de caja coincide con la suma de sus movimientos.
+- Cada rol accede solo a lo que le corresponde, incluso llamando directamente a la API.
+- Los datos persisten después de reiniciar el sistema.
+- `npm test` termina con todas las pruebas aprobadas (58/58).

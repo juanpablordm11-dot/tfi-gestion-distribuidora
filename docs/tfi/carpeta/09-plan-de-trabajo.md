@@ -1,8 +1,6 @@
 # 9. PLAN DE TRABAJO
 
-> Borrador para la carpeta del TFI. Las fechas de inicio y fin del desarrollo original son reales (15/09/2026 – 23/11/2026).
-> Las fechas de cada actividad dentro de los sprints 1 y 2 son **estimadas** y hay que ajustarlas a lo que realmente pasó.
-> Lo marcado **[PENDIENTE]** se completa cuando se definan esos datos.
+> Las fechas de inicio y fin del desarrollo original son reales (15/09/2026 – 23/11/2026); las de cada actividad dentro de los sprints 1 y 2 son aproximadas.
 
 ## 9.1 Versión descriptiva
 
@@ -12,7 +10,7 @@ El desarrollo se organizó con un enfoque iterativo e incremental, en tres sprin
 - **Sprint 3:** ampliación y formalización como Trabajo Final Integrador: requisitos que exige la cátedra, mejora propuesta, documentación y manual.
 
 Sistema: **Gestión para Distribuidoras/Negocios**. Cliente: **Gestión de Negocio de Cigarrillos**.
-Integrantes: **Juan Pablo Romagnoli** (legajo [PENDIENTE]) y **Guillermo Jiménez** (legajo [PENDIENTE]).
+Integrantes: **Juan Pablo Romagnoli** (legajo [COMPLETAR]) y **Guillermo Jiménez** (legajo [COMPLETAR]).
 
 ### PRIMER SPRINT: 15/09/2026 al 18/10/2026
 **Objetivo general:** relevar el negocio, diseñar la base de datos y construir la base técnica del sistema: servidor, seguridad, catálogos y stock.
@@ -70,19 +68,19 @@ Las fechas de los sprints 1 y 2 son estimadas y hay que revisarlas.
 
 | Actividad | Fecha de inicio | Fecha de fin | Duración | Responsable |
 |---|---|---|---|---|
-| Relevamiento y análisis | 15/09/2026 | 19/09/2026 | 5 días | [PENDIENTE] |
-| Diseño de base de datos | 20/09/2026 | 24/09/2026 | 5 días | [PENDIENTE] |
-| Entorno, seguridad y usuarios | 25/09/2026 | 02/10/2026 | 8 días | [PENDIENTE] |
-| Productos, clientes y proveedores | 03/10/2026 | 11/10/2026 | 9 días | [PENDIENTE] |
-| Stock en dos depósitos | 12/10/2026 | 18/10/2026 | 7 días | [PENDIENTE] |
-| Módulo de ventas | 19/10/2026 | 27/10/2026 | 9 días | [PENDIENTE] |
-| Deudas y cobros | 28/10/2026 | 05/11/2026 | 9 días | [PENDIENTE] |
-| Compras, caja y gastos | 06/11/2026 | 13/11/2026 | 8 días | [PENDIENTE] |
-| Reportes, comprobante y copias | 14/11/2026 | 23/11/2026 | 10 días | [PENDIENTE] |
-| Recuperación de contraseña ✔ | 25/11/2026 | 25/11/2026 | 1 día | [PENDIENTE] |
-| Documentación de análisis (ERS, DER) | 26/11/2026 | 11/12/2026 | 16 días | [PENDIENTE] |
-| Mejora: reportes en PDF | 14/12/2026 | 23/12/2026 | 10 días | [PENDIENTE] |
-| Correcciones y pruebas finales | 04/01/2027 | 11/01/2027 | 8 días | [PENDIENTE] |
+| Relevamiento y análisis | 15/09/2026 | 19/09/2026 | 5 días | Romagnoli / Jiménez |
+| Diseño de base de datos | 20/09/2026 | 24/09/2026 | 5 días | Romagnoli / Jiménez |
+| Entorno, seguridad y usuarios | 25/09/2026 | 02/10/2026 | 8 días | Romagnoli / Jiménez |
+| Productos, clientes y proveedores | 03/10/2026 | 11/10/2026 | 9 días | Romagnoli / Jiménez |
+| Stock en dos depósitos | 12/10/2026 | 18/10/2026 | 7 días | Romagnoli / Jiménez |
+| Módulo de ventas | 19/10/2026 | 27/10/2026 | 9 días | Romagnoli / Jiménez |
+| Deudas y cobros | 28/10/2026 | 05/11/2026 | 9 días | Romagnoli / Jiménez |
+| Compras, caja y gastos | 06/11/2026 | 13/11/2026 | 8 días | Romagnoli / Jiménez |
+| Reportes, comprobante y copias | 14/11/2026 | 23/11/2026 | 10 días | Romagnoli / Jiménez |
+| Recuperación de contraseña (realizada) | 25/11/2026 | 25/11/2026 | 1 día | Romagnoli / Jiménez |
+| Documentación de análisis (ERS, DER) | 26/11/2026 | 11/12/2026 | 16 días | Romagnoli / Jiménez |
+| Mejora: reportes en PDF | 14/12/2026 | 23/12/2026 | 10 días | Romagnoli / Jiménez |
+| Correcciones y pruebas finales | 04/01/2027 | 11/01/2027 | 8 días | Romagnoli / Jiménez |
 | Manual de usuario y carpeta final | 11/01/2027 | 18/01/2027 | 8 días | Equipo completo |
 
 ## 9.3 Diagrama de Gantt
@@ -100,7 +98,7 @@ Cada columna es una quincena. ■ = actividad en curso.
 | Deudas y cobros | | | ■ | ■ | | | | | |
 | Compras, caja y gastos | | | | ■ | | | | | |
 | Reportes, comprobante y copias | | | | ■ | ■ | | | | |
-| Recuperación de contraseña ✔ | | | | | ■ | | | | |
+| Recuperación de contraseña (realizada) | | | | | ■ | | | | |
 | Documentación de análisis | | | | | ■ | ■ | | | |
 | Mejora propuesta | | | | | | | ■ | | |
 | Correcciones y pruebas finales | | | | | | | | ■ | |
@@ -124,12 +122,13 @@ Son tentativas y se confirman con el tutor. La cátedra exige al menos 2 semanas
 
 | Hito | Fecha tentativa |
 |---|---|
-| Parcial de Metodología de Sistemas II (presentación del proyecto) | 25/11/2026 o 27/11/2026 |
+| Presentación del proyecto en Metodología de Sistemas II (aprobada) | 26/11/2026 |
 | Seguimiento 1: definición y propuesta | semana del 30/11/2026 |
 | Seguimiento 2: avance y correcciones | semana del 14/12/2026 |
 | Seguimiento 3: verificación final | semana del 18/01/2027 |
-| Envío de la carpeta por correo | **[PENDIENTE: ver nota]** |
+| Entrega de la documentación del Trabajo Final (Metodología de Sistemas II) | 27/11/2026 |
+| Envío de la carpeta por correo (TFI) | a confirmar con el tutor (ver nota) |
 | Mesa de Entrada | 15 a 20 días antes de la defensa |
-| Defensa | febrero de 2027 **[PENDIENTE: fecha exacta]** |
+| Defensa del TFI | febrero de 2027 (fecha a confirmar) |
 
 **Nota:** los criterios de la cátedra dicen que la carpeta enviada por correo "se evalúa en un plazo de 30 días aproximadamente", pero también que el envío se hace "entre 15 y 20 días antes de la defensa". Conviene preguntarle al tutor en el seguimiento 1 cuál de los dos plazos rige. Además, hay que confirmar si hay seguimientos durante el receso de enero.
