@@ -1,10 +1,11 @@
 # Gestión para Distribuidoras/Negocios
 
 **Trabajo Final Integrador – Tecnicatura Universitaria en Programación – UTN FRT**
-Juan Pablo Romagnoli · Guillermo Jiménez · Metodología de Sistemas II – 2026
+Juan Pablo Romagnoli y Guillermo Jiménez, Metodología de Sistemas II (2026)
 
 | Documentación | Archivo |
 |---|---|
+| **Entrega final (PDF)**: carpeta y manual de usuario | [docs/tfi/entrega/](docs/tfi/entrega/) |
 | Carpeta del proyecto (12 secciones) | [docs/tfi/CARPETA-TFI.md](docs/tfi/CARPETA-TFI.md) |
 | Manual de usuario | [docs/tfi/MANUAL-USUARIO.md](docs/tfi/MANUAL-USUARIO.md) |
 | TP 2 – Patrón Strategy (justificación y bitácora) | [docs/tp-patrones/](docs/tp-patrones/) |
@@ -35,13 +36,13 @@ Sistema web para una distribuidora de cigarrillos: stock en dos depósitos (Galp
    La primera vez, el sistema te pide crear el usuario administrador (el dueño). Los datos quedan en `data/negocio.db`.
 5. Para frenarlo: `Ctrl + C` en la terminal.
 
-Otros comandos: `npm test` (54 pruebas automáticas), `npm run backup`, `npm run restore -- archivo.db`, `npm run crear-admin -- usuario "Nombre" contraseña` (recupera el acceso si se olvidó la clave).
+Otros comandos: `npm test` (58 pruebas automáticas), `npm run datos-ejemplo` (carga datos ficticios en una base nueva), `npm run start:correo` (el código de recuperación llega como archivo .eml), `npm run backup`, `npm run restore -- archivo.db`, `npm run crear-admin -- usuario "Nombre" contraseña` (recupera el acceso si se olvidó la clave).
 
 ## Qué hace cada pantalla
 
 | Pantalla | Para qué sirve |
 |---|---|
-| Inicio | Ventas, cobros, ganancia, deudas, stock bajo. Todo con datos reales; si no hay datos, lo dice. |
+| Inicio | (Administrador) Ventas, cobros, ganancia, deudas, stock bajo. Si no hay datos, lo dice. |
 | Nueva venta | Elegís cliente y depósito, sumás productos (caja o unidad). Se aplican los precios del cliente. Contado, fiado o paga una parte. Si el cliente debe, al pagar de contado puede entregar además plata para su deuda (va a lo más viejo; lo que sobra queda a favor) y el comprobante lo detalla. |
 | Ventas | Historial con filtros, detalle, cobro, anulación y comprobante de venta con estado de cuenta (no fiscal): compartir en PDF (WhatsApp), ver en pantalla para captura o imprimir. |
 | Clientes | Contado/fiado, límite de crédito, plazo y lista de precios propia por producto. |
@@ -51,7 +52,7 @@ Otros comandos: `npm test` (54 pruebas automáticas), `npm run backup`, `npm run
 | Compras | Mercadería que llega, proveedores, deuda con proveedores. Actualiza el costo promedio. |
 | Caja y gastos | Todo lo que entró y salió, retiros personales, gastos por categoría. |
 | Ganancias | Por período, comparado con el anterior; por producto, cliente y venta. |
-| Configuración | Usuarios, contraseña, copias de seguridad, registro de actividad. |
+| Configuración | Usuarios con rol Administrador o Empleado, cambio de contraseña, copias de seguridad y registro de actividad. La contraseña olvidada se recupera desde el inicio de sesión con un código de un solo uso. |
 
 ## Reglas de negocio importantes
 
@@ -73,7 +74,6 @@ Otros comandos: `npm test` (54 pruebas automáticas), `npm run backup`, `npm run
 server/     API (Node), reglas de negocio en server/services/
 migrations/ esquema de la base de datos (SQLite)
 public/     interfaz (HTML/CSS/JS sin librerías externas)
-scripts/    backup, restore, demo, crear-admin
+scripts/    backup, restore, demo, datos de ejemplo, crear-admin
 tests/      pruebas automáticas (arrancan un servidor real con base temporal)
-_previo/    esqueleto anterior que había en la carpeta; se conserva por si querés revisarlo
 ```
