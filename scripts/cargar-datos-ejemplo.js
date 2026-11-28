@@ -126,7 +126,10 @@ const motivos = new Map(); // por qué el sistema rechazó una venta (sus reglas
 function comprar(proveedor, dep, items, pagaTodo = true) {
   const lineas = items.map(([p, cajas]) => ({ producto_id: p.id, presentacion: 'caja', cantidad: cajas, costo: p.costo_caja }));
   const total = lineas.reduce((s, l) => s + l.cantidad * l.costo, 0);
-  crearCompra({ idem_key: idem(), proveedor_id: proveedor.id, deposito_id: dep, lineas, pagado: pagaTodo ? total : Math.round(total * 0.6 / 100) * 100, medio: 'transferencia' }, user);
+  // Se alterna efectivo y transferencia: si todo se pagara por banco, el saldo de transferencias quedaría negativo
+  // (el saldo inicial de caja se carga como efectivo).
+  const medio = conteo.compras % 2 === 0 ? 'transferencia' : 'efectivo';
+  crearCompra({ idem_key: idem(), proveedor_id: proveedor.id, deposito_id: dep, lineas, pagado: pagaTodo ? total : Math.round(total * 0.6 / 100) * 100, medio }, user);
   conteo.compras++;
 }
 
