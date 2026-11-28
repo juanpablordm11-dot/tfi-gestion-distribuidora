@@ -4,7 +4,7 @@
 
 **Sistema:** Gestión para Distribuidoras/Negocios
 **Cliente:** Gestión de Negocio de Cigarrillos
-**Integrantes:** Juan Pablo Romagnoli · Guillermo Jiménez
+**Integrantes:** Juan Pablo Romagnoli y Guillermo Jiménez
 
 ## 6.1 Problemática detectada
 
@@ -260,7 +260,8 @@ erDiagram
 - caja_mov (**id**, fecha, tipo, categoria, medio, monto, concepto, reversa_de → caja_mov, usuario_id → usuarios)
 - gastos (**id**, fecha, categoria, descripcion, monto, medio, anulado, usuario_id → usuarios)
 - auditoria (**id**, fecha, usuario_id → usuarios, accion, entidad, entidad_id, detalle)
-- sesiones (**token_hash**, usuario_id → usuarios, creada, expira) · config (**clave**, valor)
+- sesiones (**token_hash**, usuario_id → usuarios, creada, expira)
+- config (**clave**, valor)
 
 ### Normalización (hasta 3FN)
 - **1FN:** todos los campos son atómicos; no hay listas dentro de un campo. Las líneas de una venta o compra están en tablas propias (`venta_lineas`, `compra_lineas`).

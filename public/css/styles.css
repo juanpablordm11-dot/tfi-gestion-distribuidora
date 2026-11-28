@@ -488,9 +488,8 @@ body.imprimiendo .modal-foot, body.imprimiendo .modal-head button { display: non
 .calc-aviso { margin-top: 4px; padding: 4px 8px; border-radius: 6px; background: var(--info-soft); color: var(--info); font-weight: 600; text-align: left; white-space: normal; line-height: 1.35; }
 
 /* ============================================================================
-   Ajuste visual sobrio (TFI, sprint 3, 26/11/2026) — skill "diseno-sistema".
-   Objetivo: que se vea profesional y hecho a mano, no "de plantilla":
-   grafito en vez de negro puro, un rojo más sobrio, sin brillos rojos ni saltos al pasar el mouse,
+   Ajuste visual (TFI, sprint 3, 26/11/2026).
+   Paleta más sobria: grafito en vez de negro puro, un rojo menos saturado, sin brillos ni saltos al pasar el mouse,
    títulos de tabla y etiquetas en minúscula normal (no TODO MAYÚSCULAS).
    Solo pantalla (@media screen): la impresión del comprobante no cambia.
    Para volver al diseño anterior, borrar este bloque completo.

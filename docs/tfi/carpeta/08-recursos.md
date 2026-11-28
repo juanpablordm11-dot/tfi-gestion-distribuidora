@@ -14,8 +14,8 @@
 
 | Integrante | Roles |
 |---|---|
-| Juan Pablo Romagnoli | Analista funcional · Desarrollador backend y frontend · Diseñador de base de datos · Documentación |
-| Guillermo Jiménez | Analista funcional · Desarrollador backend y frontend · Pruebas · Documentación |
+| Juan Pablo Romagnoli | Analista funcional, desarrollador backend y frontend, diseñador de base de datos y documentación |
+| Guillermo Jiménez | Analista funcional, desarrollador backend y frontend, pruebas y documentación |
 
 
 ## 8.3 Recursos materiales

@@ -29,14 +29,14 @@
 4. Introducción
 5. Estado del arte
 6. Descripción del proyecto
-   - 6.1 Problemática detectada · 6.2 Solución propuesta · 6.3 Alcance · 6.4 Usuarios y roles · 6.5 Historias de usuario · 6.6 Reglas de negocio · 6.7 Requisitos · 6.8 Matriz de trazabilidad · 6.9 Restricciones, limitaciones y suposiciones · 6.10 Diagrama entidad–relación y normalización · 6.11 Propuesta de mejora y presupuesto · 6.12 Mejoras a futuro · 6.13 Atributos de calidad · 6.14 Criterios de aceptación
+   - 6.1 Problemática detectada, 6.2 Solución propuesta, 6.3 Alcance, 6.4 Usuarios y roles, 6.5 Historias de usuario, 6.6 Reglas de negocio, 6.7 Requisitos, 6.8 Matriz de trazabilidad, 6.9 Restricciones, limitaciones y suposiciones, 6.10 Diagrama entidad–relación y normalización, 6.11 Propuesta de mejora y presupuesto, 6.12 Mejoras a futuro, 6.13 Atributos de calidad, 6.14 Criterios de aceptación
 7. Metodología
 8. Recursos necesarios
 9. Plan de trabajo
 10. Resultados esperados
 11. Referencias
 12. Anexos
-   - A. Relevamiento de requerimientos · B. Diccionario de datos · C. Pruebas automáticas · D. Patrón de diseño (TP 2) · E. Repositorio y ejecución · F. Glosario · G. Diagrama causa–efecto · H. Cumplimiento de los requisitos de la cátedra · I. Control de versiones
+   - A. Relevamiento de requerimientos, B. Diccionario de datos, C. Pruebas automáticas, D. Patrón de diseño (TP 2), E. Repositorio y ejecución, F. Glosario, G. Diagrama causa–efecto, H. Cumplimiento de los requisitos de la cátedra, I. Control de versiones
 
 Documento anexo aparte: **Manual de usuario**.
 
@@ -66,7 +66,7 @@ Se trabajó con un enfoque **ágil, iterativo e incremental inspirado en Scrum**
 - Mejora propuesta y presupuestada: exportación a PDF de los reportes.
 
 ## 3.5 Conclusiones generales
-El proyecto integró los contenidos de la carrera (programación, bases de datos, metodología de sistemas, seguridad y patrones de diseño) en un sistema real que resuelve problemas concretos de un negocio. El trabajo con el cliente y luego con la cátedra mostró la importancia de relevar bien las reglas del negocio, documentar las decisiones y verificar cada cambio con pruebas antes de darlo por terminado.
+El proyecto integró los contenidos de la carrera (programación, bases de datos, metodología de sistemas, seguridad y patrones de diseño) en un sistema real que resuelve problemas concretos de un negocio. El trabajo con el cliente y luego con la cátedra nos mostró la importancia de relevar bien las reglas del negocio, documentar las decisiones y verificar cada cambio con pruebas antes de darlo por terminado. Las correcciones de la docente (más filtros en los listados y un rol para el empleado) nos hicieron ver que un sistema correcto en sus cálculos no alcanza: también tiene que ser fácil de usar para quien lo maneja todos los días.
 
 ---
 
@@ -140,7 +140,7 @@ Frente a las alternativas, el sistema aporta una solución **adaptada a las regl
 
 **Sistema:** Gestión para Distribuidoras/Negocios
 **Cliente:** Gestión de Negocio de Cigarrillos
-**Integrantes:** Juan Pablo Romagnoli · Guillermo Jiménez
+**Integrantes:** Juan Pablo Romagnoli y Guillermo Jiménez
 
 ## 6.1 Problemática detectada
 
@@ -396,7 +396,8 @@ erDiagram
 - caja_mov (**id**, fecha, tipo, categoria, medio, monto, concepto, reversa_de → caja_mov, usuario_id → usuarios)
 - gastos (**id**, fecha, categoria, descripcion, monto, medio, anulado, usuario_id → usuarios)
 - auditoria (**id**, fecha, usuario_id → usuarios, accion, entidad, entidad_id, detalle)
-- sesiones (**token_hash**, usuario_id → usuarios, creada, expira) · config (**clave**, valor)
+- sesiones (**token_hash**, usuario_id → usuarios, creada, expira)
+- config (**clave**, valor)
 
 ### Normalización (hasta 3FN)
 - **1FN:** todos los campos son atómicos; no hay listas dentro de un campo. Las líneas de una venta o compra están en tablas propias (`venta_lineas`, `compra_lineas`).
@@ -482,7 +483,7 @@ Etapas recorridas:
 - **Modelado:** diagrama entidad–relación, modelo relacional y normalización hasta 3FN (sección 6.10).
 - **Control de versiones:** Git y GitHub.
 - **Entorno de desarrollo:** Visual Studio Code.
-- **Asistente de inteligencia artificial:** Claude, usado como apoyo para proponer código y documentación. Toda propuesta se verificó con las pruebas automáticas y con revisión manual antes de aceptarla, y se descartaron o corrigieron las que no correspondían (ver la reflexión en la bitácora del TP 2).
+- **Asistente de inteligencia artificial:** usamos Claude, un asistente de IA integrado en VS Code, como apoyo para proponer código y borradores de la documentación. Todo lo que propuso lo revisamos y lo probamos con las pruebas automáticas antes de aceptarlo, y varias propuestas las corregimos o las descartamos (la reflexión completa está en la bitácora del TP 2).
 
 ## 7.3 Tecnologías utilizadas
 
@@ -493,7 +494,7 @@ Etapas recorridas:
 | Datos | SQLite (módulo `node:sqlite`) con migraciones (Node.js, s.f.; SQLite, s.f.) | Base relacional en un archivo, con transacciones reales; suficiente para un negocio con pocos usuarios |
 | Pruebas | Pruebas de punta a punta propias (`npm test`) | Levantan el servidor real con una base temporal y usan la API como la pantalla |
 
-Decisión destacada: el sistema **no tiene dependencias externas** (no requiere `npm install`). Esto reduce el mantenimiento y las vulnerabilidades de terceros. El costo es programar a mano lo que una librería resolvería (por ejemplo, el generador de PDF).
+Una decisión que tomamos desde el principio fue que el sistema **no tuviera dependencias externas** (no requiere `npm install`). Así se reduce el mantenimiento y no dependemos de vulnerabilidades de terceros. La contra es que hubo que programar a mano cosas que una librería resuelve, como el generador de PDF.
 
 ## 7.4 Diseño del sistema y arquitectura
 **Arquitectura cliente–servidor en capas** (monolito en capas; Pressman y Maxim, 2020):
@@ -553,8 +554,8 @@ Se ejecuta con `npm start` y se abre en el navegador (http://localhost:3000). La
 
 | Integrante | Roles |
 |---|---|
-| Juan Pablo Romagnoli | Analista funcional · Desarrollador backend y frontend · Diseñador de base de datos · Documentación |
-| Guillermo Jiménez | Analista funcional · Desarrollador backend y frontend · Pruebas · Documentación |
+| Juan Pablo Romagnoli | Analista funcional, desarrollador backend y frontend, diseñador de base de datos y documentación |
+| Guillermo Jiménez | Analista funcional, desarrollador backend y frontend, pruebas y documentación |
 
 
 ## 8.3 Recursos materiales
@@ -630,7 +631,7 @@ Integrantes: **Juan Pablo Romagnoli** (legajo 62386) y **Guillermo Jiménez** (l
 
 ➢ **Subtotal Sprint 3: 25 horas**
 
-**Total general: 95 horas** (Sprint 1: 35 hs · Sprint 2: 35 hs · Sprint 3: 25 hs)
+**Total general: 95 horas** (35 en el sprint 1, 35 en el sprint 2 y 25 en el sprint 3).
 
 ## 9.2 Calendarización de actividades
 

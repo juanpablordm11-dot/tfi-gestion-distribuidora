@@ -9,8 +9,9 @@ backups/
 *.oxps
 
 # No se publica (repositorio público del TFI):
-# - instrucciones personales del asistente, con referencias al proyecto del cliente real
+# - configuración local del editor, con referencias al proyecto del cliente real
 CLAUDE.md
+.claude/
 # - material de la cátedra y trabajos de otros alumnos (descargados de OneDrive)
 *.zip
 docs/tfi/*Recursos*/

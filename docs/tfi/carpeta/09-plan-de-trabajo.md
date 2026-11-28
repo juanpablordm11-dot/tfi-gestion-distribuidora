@@ -60,7 +60,7 @@ Integrantes: **Juan Pablo Romagnoli** (legajo 62386) y **Guillermo Jiménez** (l
 
 ➢ **Subtotal Sprint 3: 25 horas**
 
-**Total general: 95 horas** (Sprint 1: 35 hs · Sprint 2: 35 hs · Sprint 3: 25 hs)
+**Total general: 95 horas** (35 en el sprint 1, 35 en el sprint 2 y 25 en el sprint 3).
 
 ## 9.2 Calendarización de actividades
 

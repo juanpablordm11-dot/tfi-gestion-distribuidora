@@ -1,6 +1,6 @@
 # Manual de usuario – Gestión para Distribuidoras/Negocios
 
-**Versión 1.0 · Noviembre 2026 · Juan Pablo Romagnoli · Guillermo Jiménez**
+**Versión 1.0, noviembre de 2026. Juan Pablo Romagnoli y Guillermo Jiménez.**
 
 Las figuras de este manual son capturas reales del sistema, tomadas con los **datos de ejemplo ficticios** que se cargan con `npm run datos-ejemplo`. No contienen información real del cliente.
 

@@ -15,7 +15,7 @@ Etapas recorridas:
 - **Modelado:** diagrama entidad–relación, modelo relacional y normalización hasta 3FN (sección 6.10).
 - **Control de versiones:** Git y GitHub.
 - **Entorno de desarrollo:** Visual Studio Code.
-- **Asistente de inteligencia artificial:** Claude, usado como apoyo para proponer código y documentación. Toda propuesta se verificó con las pruebas automáticas y con revisión manual antes de aceptarla, y se descartaron o corrigieron las que no correspondían (ver la reflexión en la bitácora del TP 2).
+- **Asistente de inteligencia artificial:** usamos Claude, un asistente de IA integrado en VS Code, como apoyo para proponer código y borradores de la documentación. Todo lo que propuso lo revisamos y lo probamos con las pruebas automáticas antes de aceptarlo, y varias propuestas las corregimos o las descartamos (la reflexión completa está en la bitácora del TP 2).
 
 ## 7.3 Tecnologías utilizadas
 
@@ -26,7 +26,7 @@ Etapas recorridas:
 | Datos | SQLite (módulo `node:sqlite`) con migraciones (Node.js, s.f.; SQLite, s.f.) | Base relacional en un archivo, con transacciones reales; suficiente para un negocio con pocos usuarios |
 | Pruebas | Pruebas de punta a punta propias (`npm test`) | Levantan el servidor real con una base temporal y usan la API como la pantalla |
 
-Decisión destacada: el sistema **no tiene dependencias externas** (no requiere `npm install`). Esto reduce el mantenimiento y las vulnerabilidades de terceros. El costo es programar a mano lo que una librería resolvería (por ejemplo, el generador de PDF).
+Una decisión que tomamos desde el principio fue que el sistema **no tuviera dependencias externas** (no requiere `npm install`). Así se reduce el mantenimiento y no dependemos de vulnerabilidades de terceros. La contra es que hubo que programar a mano cosas que una librería resuelve, como el generador de PDF.
 
 ## 7.4 Diseño del sistema y arquitectura
 **Arquitectura cliente–servidor en capas** (monolito en capas; Pressman y Maxim, 2020):
